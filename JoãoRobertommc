@@ -1,0 +1,41 @@
+function mdc(a, b) {
+    while (b) {
+        [a, b] = [b, a % b];
+    }
+    return a;
+}
+
+function mmcDoisNumeros(a, b) {
+    return (a * b) / mdc(a, b);
+}
+Array.prototype.mmc = function() {
+    return mmc(...this);
+}
+function mmc(...numeros) {
+     if (numeros.length < 2) {
+        return null;
+    }
+    if (numeros.some(num => !Number.isInteger(num))) {
+        return null;
+    }
+    const numerosPositivos = numeros.map(num => Math.abs(num));
+    return numerosPositivos.reduce(mmcDoisNumeros);
+}
+
+
+console.log(mmc(3, 4))  
+console.log(mmc(18, 131)) 
+console.log(mmc(-3, -4)) 
+console.log(mmc(-5, 16)) 
+console.log(mmc(3.5, 4)) 
+console.log(mmc(3, 4.1)) 
+console.log(mmc(3.8, 4.1)) 
+console.log(mmc('3', '4')) 
+console.log(mmc('a', 'b')) 
+console.log(mmc([3, 4])) 
+console.log(mmc(3)) 
+console.log(mmc(3, 4, 5))
+console.log(mmc(3, 4, 5, 6)) 
+console.log(mmc()) 
+const numeros = [3, 4, 5]
+console.log(numeros.mmc()) 
